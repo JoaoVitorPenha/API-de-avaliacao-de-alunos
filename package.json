@@ -1,0 +1,21 @@
+{
+  "name": "api-de-avaliacao-de-alunos",
+  "version": "1.0.0",
+  "description": "Avaliação escolar (média)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoVitorPenha/API-de-avaliacao-de-alunos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JoaoVitorPenha/API-de-avaliacao-de-alunos/issues"
+  },
+  "homepage": "https://github.com/JoaoVitorPenha/API-de-avaliacao-de-alunos#readme"
+}

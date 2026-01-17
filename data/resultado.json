@@ -1,0 +1,14 @@
+[
+  {
+    "nome": "Carlos",
+    "resultado": "Erro ao avaliar Carlos: Aluno sem notas"
+  },
+  {
+    "nome": "José",
+    "resultado": "Erro ao avaliar José: Nota inválida: não é número"
+  },
+  {
+    "nome": "Maria",
+    "resultado": "Maria passou de ano com média 8.25"
+  }
+]
