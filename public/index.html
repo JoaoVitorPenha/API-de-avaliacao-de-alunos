@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste API Alunos</title>
+</head>
+<body>
+  <h1>Adicionar aluno</h1>
+
+  <button onclick="enviar()">Adicionar aluno</button>
+
+  <pre id="saida"></pre>
+
+  <script>
+    function enviar() {
+      fetch("/alunos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome: "Ana",
+          notas: [9, 8, 10, 9]
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("saida").textContent =
+          JSON.stringify(data, null, 2);
+      })
+      .catch(err => {
+        document.getElementById("saida").textContent = err;
+      });
+    }
+  </script>
+</body>
+</html>

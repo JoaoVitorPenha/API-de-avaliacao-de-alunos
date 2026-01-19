@@ -6,6 +6,7 @@ const avaliarAluno = require("./src/avaliacao");
 
 const app = express();
 app.use(express.json());
+app.use(express.static("public"));
 
 // caminho correto para o JSON
 const caminhoAlunos = path.join(__dirname, "data", "alunos.json");
