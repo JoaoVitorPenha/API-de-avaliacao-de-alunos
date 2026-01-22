@@ -44,7 +44,11 @@ app.post("/alunos", (req, res) => {
     const dados = fs.readFileSync(caminhoAlunos, "utf-8");
     const alunos = JSON.parse(dados);
 
-    alunos.push(novoAluno);
+    const novoAlunoComId = {
+    	id: Date.now();
+    	nome: novoAluno.nome;
+    	notas: novoAluno.notas;
+    }
 
     fs.writeFileSync(
       caminhoAlunos,
