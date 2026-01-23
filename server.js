@@ -45,12 +45,13 @@ app.post("/alunos", (req, res) => {
     const alunos = JSON.parse(dados);
 
     const novoAlunoComId = {
-    	id: Date.now(),
-    	nome: novoAluno.nome,
-    	notas: novoAluno.notas,
-    }
-
+      id: Date.now(),
+      nome: novoAluno.nome,
+      notas: novoAluno.notas
+    };
+    
     alunos.push(novoAlunoComId);
+    
 
     fs.writeFileSync(
       caminhoAlunos,
@@ -70,25 +71,25 @@ app.post("/alunos", (req, res) => {
 // DELETE /alunos/:id
 // =========================
 app.delete("/alunos/:id", (req, res) => {
-	const id = Number(req, params, id);
+  const id = Number(req.params.id);
 
-	const dados = fs.readFileSync(caminhoAlunos, "utf-8");
-	let alunos = JSON.parse(dados);
+  const dados = fs.readFileSync(caminhoAlunos, "utf-8");
+  let alunos = JSON.parse(dados);
 
-	const tamanhoAntes = alunos.length;
-	alunos = alunos.filter(aluno => aluno.id !== id);
+  const tamanhoAntes = alunos.length;
+  alunos = alunos.filter(aluno => aluno.id !== id);
 
-	if (alunos.length === tamanhoAntes) {
-		return res.status(404).json({erro: "Aluno não encontrado"});
-	}
+  if (alunos.length === tamanhoAntes) {
+    return res.status(404).json({ erro: "Aluno não encontrado" });
+  }
 
-	fs.writeFileSync(
-		caminhoAlunos;
-		JSON.stringify(alunos, null, 2)
-	);
+  fs.writeFileSync(
+    caminhoAlunos,
+    JSON.stringify(alunos, null, 2)
+  );
 
-	res.json({mensagem: "Aluno removido com sucesso"});
-})
+  res.json({ mensagem: "Aluno removido com sucesso" });
+});
 
 // =========================
 // PUT /alunos/:id
@@ -120,6 +121,7 @@ app.put("/alunos/:id", (req, res) => {
 
   res.json({ mensagem: "Aluno atualizado com sucesso" });
 });
+
 
 
 // =========================
