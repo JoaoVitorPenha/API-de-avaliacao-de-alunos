@@ -50,6 +50,8 @@ app.post("/alunos", (req, res) => {
     	notas: novoAluno.notas;
     }
 
+    alunos.push(novoAlunoComId);
+
     fs.writeFileSync(
       caminhoAlunos,
       JSON.stringify(alunos, null, 2)
@@ -63,6 +65,62 @@ app.post("/alunos", (req, res) => {
     res.status(500).json({ erro: erro.message });
   }
 });
+
+// =========================
+// DELETE /alunos/:id
+// =========================
+app.delete("/alunos/:id", (req, res) => {
+	const id = Number(req, params, id);
+
+	const dados = fs.readFileSync(caminhoAlunos, "utf-8");
+	let alunos = JSON.parse(dados);
+
+	const tamanhoAntes = alunos.length;
+	alunos = alunos.filter(aluno => aluno.id !== id);
+
+	if (alunos.length === tamanhoAntes) {
+		return res.status(404).json({erro: "Aluno não encontrado"});
+	}
+
+	fs.writeFileSync(
+		caminhoAlunos;
+		JSON.stringify(alunos, null, 2)
+	);
+
+	res.json({mensagem: "Aluno removido com sucesso"});
+})
+
+// =========================
+// PUT /alunos/:id
+// =========================
+app.put("/alunos/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const { nome, notas } = req.body;
+
+  if (!nome || !Array.isArray(notas)) {
+    return res.status(400).json({ erro: "Dados inválidos" });
+  }
+
+  const dados = fs.readFileSync(caminhoAlunos, "utf-8");
+  const alunos = JSON.parse(dados);
+
+  const aluno = alunos.find(a => a.id === id);
+
+  if (!aluno) {
+    return res.status(404).json({ erro: "Aluno não encontrado" });
+  }
+
+  aluno.nome = nome;
+  aluno.notas = notas;
+
+  fs.writeFileSync(
+    caminhoAlunos,
+    JSON.stringify(alunos, null, 2)
+  );
+
+  res.json({ mensagem: "Aluno atualizado com sucesso" });
+});
+
 
 // =========================
 // SUBIR SERVIDOR
