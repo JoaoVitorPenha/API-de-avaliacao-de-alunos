@@ -45,9 +45,9 @@ app.post("/alunos", (req, res) => {
     const alunos = JSON.parse(dados);
 
     const novoAlunoComId = {
-    	id: Date.now();
-    	nome: novoAluno.nome;
-    	notas: novoAluno.notas;
+    	id: Date.now(),
+    	nome: novoAluno.nome,
+    	notas: novoAluno.notas,
     }
 
     alunos.push(novoAlunoComId);
